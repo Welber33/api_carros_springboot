@@ -1,5 +1,7 @@
 package com.carros.api;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -8,22 +10,12 @@ public class IndexController {
 
     @GetMapping()
     public String get(){
-        return "Get Spring Boot";
+        return "API dos Carros";
     }
 
-    @PostMapping()
-    public String post(){
-        return "Post Spring Boot";
-    }
-
-    @PutMapping()
-    public String put(){
-        return "Put Spring Boot";
-    }
-
-    @DeleteMapping()
-    public String delete(){
-        return "Delete Spring Boot";
+    @GetMapping("/userInfo")
+    public UserDetails getUser(@AuthenticationPrincipal UserDetails user){
+        return user;
     }
 
 }
